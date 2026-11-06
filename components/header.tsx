@@ -18,6 +18,7 @@ const Header = () => {
           <nav className="flex items-center gap-4 text-sm font-medium text-zinc-600">
             <Link href="/" className="hover:text-zinc-900">Home</Link>
             <Link href="/posts" className="hover:text-zinc-900">Posts</Link>
+            <Link href="/signup" className="hover:text-zinc-900">SignUp</Link>
           </nav>
         </header>
     );

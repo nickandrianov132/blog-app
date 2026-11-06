@@ -137,11 +137,38 @@
                   "kind": "scalar"
                 }
               },
+              "login": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
               "name": {
                 "nullable": true,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
+                }
+              },
+              "password": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "role": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "Role",
+                  "namespaceId": "public",
+                  "plane": "domain"
                 }
               },
               "updatedAt": {
@@ -152,13 +179,6 @@
                   "typeParams": {
                     "precision": 3
                   }
-                }
-              },
-              "username": {
-                "nullable": true,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
                 }
               }
             },
@@ -190,14 +210,20 @@
                 "id": {
                   "column": "id"
                 },
+                "login": {
+                  "column": "login"
+                },
                 "name": {
                   "column": "name"
                 },
+                "password": {
+                  "column": "password"
+                },
+                "role": {
+                  "column": "role"
+                },
                 "updatedAt": {
                   "column": "updatedAt"
-                },
-                "username": {
-                  "column": "username"
                 }
               },
               "namespaceId": "public",
@@ -266,6 +292,13 @@
               "uniques": []
             },
             "User": {
+              "checks": [
+                {
+                  "expression": "\"role\" IN ('USER', 'ADMIN')",
+                  "name": "User_role_check_1954e8c0",
+                  "prefix": "User_role_check"
+                }
+              ],
               "columns": {
                 "createdAt": {
                   "codecId": "pg/timestamptz-date@1",
@@ -289,10 +322,35 @@
                   "dataType": "pg/uuid",
                   "nullable": false
                 },
+                "login": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
                 "name": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
                   "nullable": true
+                },
+                "password": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "role": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": "USER"
+                  },
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "Role",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
                 },
                 "updatedAt": {
                   "codecId": "pg/timestamptz-date@1",
@@ -301,11 +359,6 @@
                   "typeParams": {
                     "precision": 3
                   }
-                },
-                "username": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": true
                 }
               },
               "foreignKeys": [],
@@ -316,6 +369,11 @@
                 ]
               },
               "uniques": [
+                {
+                  "columns": [
+                    "login"
+                  ]
+                },
                 {
                   "columns": [
                     "email"
@@ -329,7 +387,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "d901307c194c817cfa0a28ababa391bd1b2342a2ebb5f8ac3280534f2295f96f"
+    "storageHash": "457474154cab7025e98240ecde1b944c0b047a4232ba3754ce49b78b8d9a324d"
   },
   "execution": {
     "executionHash": "c478b201602051bfaeddbe71eb44664a34764bf959a3d00c206e7dcf71393533",

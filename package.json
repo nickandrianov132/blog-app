@@ -2,6 +2,7 @@
   "name": "next-js-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,11 +12,15 @@
     "postinstall": "prisma skills sync || exit 0"
   },
   "dependencies": {
+    "@hookform/resolvers": "^7.0.3",
     "@prisma/orm-postgres": "^8.0.0-rc.22",
+    "bcrypt-ts": "^9.0.3",
     "dotenv": "^18.0.9",
     "next": "16.4.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-hook-form": "^7.91.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@prisma/cli-engine": "^0.9.0",
